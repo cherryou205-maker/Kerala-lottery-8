@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel - Kerala Lottery 8</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial,Helvetica,sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at top left, rgba(34,197,94,.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(59,130,246,.18), transparent 30%),
+        linear-gradient(135deg,#0f172a,#111827,#1e293b);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      color:#fff;
+    }
+
+    .panel{
+      width:100%;
+      max-width:460px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(16px);
+      border:1px solid rgba(255,255,255,0.12);
+      border-radius:22px;
+      box-shadow:0 25px 70px rgba(0,0,0,0.35);
+      overflow:hidden;
+    }
+
+    .panel-top{
+      padding:26px 26px 14px;
+      text-align:center;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .icon{
+      width:70px;
+      height:70px;
+      border-radius:20px;
+      margin:0 auto 14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      box-shadow:0 14px 35px rgba(34,197,94,.35);
+    }
+
+    .panel-top h1{
+      font-size:28px;
+      margin-bottom:6px;
+    }
+
+    .panel-top p{
+      color:#cbd5e1;
+      font-size:14px;
+    }
+
+    .panel-body{
+      padding:24px;
+    }
+
+    .field{
+      margin-bottom:16px;
+    }
+
+    .field label{
+      display:block;
+      margin-bottom:8px;
+      font-size:14px;
+      color:#e2e8f0;
+      font-weight:600;
+    }
+
+    .field input{
+      width:100%;
+      height:50px;
+      border:none;
+      outline:none;
+      border-radius:14px;
+      padding:0 14px;
+      background:#fff;
+      color:#111827;
+      font-size:15px;
+    }
+
+    .btn{
+      width:100%;
+      height:50px;
+      border:none;
+      border-radius:14px;
+      cursor:pointer;
+      color:#fff;
+      font-size:16px;
+      font-weight:700;
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      box-shadow:0 14px 30px rgba(34,197,94,.35);
+    }
+
+    .btn.secondary{
+      margin-top:12px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:none;
+    }
+
+    .status{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:14px;
+      font-size:14px;
+      display:none;
+      line-height:1.5;
+    }
+
+    .status.success{
+      background:rgba(34,197,94,.14);
+      border:1px solid rgba(34,197,94,.35);
+      color:#dcfce7;
+    }
+
+    .status.error{
+      background:rgba(239,68,68,.14);
+      border:1px solid rgba(239,68,68,.35);
+      color:#fee2e2;
+    }
+
+    .hint{
+      margin-top:16px;
+      padding:14px;
+      border-radius:14px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#cbd5e1;
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .badge-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+      gap:10px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:700;
+      background:rgba(34,197,94,.14);
+      border:1px solid rgba(34,197,94,.35);
+      color:#dcfce7;
+    }
+
+    .logout-btn{
+      border:none;
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:12px;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,0.12);
+    }
+
+    #adminBox{
+      display:none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="panel">
+    <div class="panel-top">
+      <div class="icon">⚙️</div>
+      <h1>Admin Panel</h1>
+      <p>Kerala Lottery 8 • WhatsApp Number Manager</p>
+    </div>
+
+    <div class="panel-body">
+
+      <!-- LOGIN BOX -->
+      <div id="loginBox">
+        <div class="field">
+          <label>Admin Password</label>
+          <input type="password" id="adminPassword" placeholder="Enter admin password">
+        </div>
+
+        <button class="btn" onclick="loginAdmin()">Login</button>
+
+        <div class="status error" id="loginError">Wrong password. Please try again.</div>
+
+        <div class="hint">
+          Login karne ke baad aap WhatsApp number update kar sakte ho.<br>
+          Number format: <b>919876543210</b>
+        </div>
+      </div>
+
+      <!-- ADMIN BOX -->
+      <div id="adminBox">
+        <div class="badge-row">
+          <div class="badge">● Logged In</div>
+          <button class="logout-btn" onclick="logoutAdmin()">Logout</button>
+        </div>
+
+        <div class="field">
+          <label>Current WhatsApp Number</label>
+          <input type="text" id="currentNumber" readonly>
+        </div>
+
+        <div class="field">
+          <label>New WhatsApp Number</label>
+          <input type="text" id="newNumber" placeholder="Enter new number with country code">
+        </div>
+
+        <button class="btn" onclick="saveWhatsAppNumber()">Update WhatsApp Number</button>
+
+        <div class="status success" id="successMsg">WhatsApp number updated successfully.</div>
+        <div class="status error" id="errorMsg">Something went wrong. Please try again.</div>
+
+        <div class="hint">
+          Firebase path used: <b>site/whatsapp</b><br>
+          Example format: <b>919876543210</b>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getDatabase, ref, get, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCR4ENj-EaoF2bshPaTukEkFwnryQHWJIQ",
+      authDomain: "kerala-lottery-8-daafd.firebaseapp.com",
+      databaseURL: "https://kerala-lottery-8-daafd-default-rtdb.firebaseio.com",
+      projectId: "kerala-lottery-8-daafd",
+      storageBucket: "kerala-lottery-8-daafd.firebasestorage.app",
+      messagingSenderId: "466400379440",
+      appId: "1:466400379440:web:8a2974d629d60f9ccbe3f5",
+      measurementId: "G-T2YPCYKSZX"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const ADMIN_PASSWORD = "12345";
+
+    window.loginAdmin = async function () {
+      const pass = document.getElementById("adminPassword").value.trim();
+      const loginError = document.getElementById("loginError");
+
+      loginError.style.display = "none";
+
+      if (pass !== ADMIN_PASSWORD) {
+        loginError.style.display = "block";
+        return;
+      }
+
+      document.getElementById("loginBox").style.display = "none";
+      document.getElementById("adminBox").style.display = "block";
+
+      try {
+        const snap = await get(ref(db, "site/whatsapp"));
+        document.getElementById("currentNumber").value = snap.exists() ? snap.val() : "";
+      } catch (err) {
+        console.error("Read error:", err);
+      }
+    };
+
+    window.logoutAdmin = function () {
+      document.getElementById("adminBox").style.display = "none";
+      document.getElementById("loginBox").style.display = "block";
+      document.getElementById("adminPassword").value = "";
+    };
+
+    window.saveWhatsAppNumber = async function () {
+      const newNumber = document.getElementById("newNumber").value.trim();
+      const successMsg = document.getElementById("successMsg");
+      const errorMsg = document.getElementById("errorMsg");
+
+      successMsg.style.display = "none";
+      errorMsg.style.display = "none";
+
+      if (!newNumber) {
+        errorMsg.textContent = "Please enter WhatsApp number.";
+        errorMsg.style.display = "block";
+        return;
+      }
+
+      try {
+        await set(ref(db, "site/whatsapp"), newNumber);
+        document.getElementById("currentNumber").value = newNumber;
+        document.getElementById("newNumber").value = "";
+        successMsg.style.display = "block";
+      } catch (err) {
+        console.error("Save error:", err);
+        errorMsg.textContent = "Failed to update number.";
+        errorMsg.style.display = "block";
+      }
+    };
+  </script>
+</body>
+</html>
