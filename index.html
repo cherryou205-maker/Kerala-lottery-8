@@ -272,22 +272,36 @@ body{
 /* ─── TICKET GRID ─── */
 .ticket-grid{
   display:grid;
-  grid-template-columns:repeat(3, minmax(0, 1fr));
+  grid-template-columns:repeat(3, 1fr);
   gap:12px;
-  width:100%;
-  max-height:none;
-  overflow:visible;
-  padding-right:0;
+  height:540px;          /* 3 rows visible */
+  overflow-y:auto;       /* baki tickets scroll honge */
+  overflow-x:hidden;
+  padding-right:4px;
   margin-bottom:16px;
+  align-content:start;
 }
+.ticket-grid::-webkit-scrollbar{width:4px}
+.ticket-grid::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:10px}
+.ticket-grid::-webkit-scrollbar-thumb{background:rgba(212,175,55,.45);border-radius:10px}
 .ticket-grid::-webkit-scrollbar{display:none}
 .t-item{
   background:rgba(255,255,255,.04);
   border:1px solid rgba(212,175,55,.15);
-  border-radius:8px;padding:10px 6px 8px;
-  text-align:center;cursor:pointer;
+  border-radius:16px;
+  height:160px;                 /* card chhota karo */
+  padding:12px 8px;
+  text-align:center;
+  cursor:pointer;
   transition:all .25s cubic-bezier(.34,1.56,.64,1);
-  position:relative;user-select:none;overflow:hidden;
+  position:relative;
+  user-select:none;
+  overflow:hidden;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 .t-item:hover{
   border-color:rgba(212,175,55,.5);
@@ -305,14 +319,25 @@ body{
   color:#d4af37;font-weight:700;opacity:0;transition:opacity .2s;
 }
 .t-item.sel .t-check{opacity:1}
-.t-ticket-icon{font-size:12px;display:block;margin-bottom:2px}
+.t-ticket-icon{
+  font-size:28px;
+  display:block;
+  margin-bottom:10px;
+}
 .t-num{
-  font-family:'Rajdhani',sans-serif;font-size:12.5px;font-weight:700;
-  color:rgba(255,255,255,.82);letter-spacing:.5px;transition:color .2s;
+  font-family:'Rajdhani',sans-serif;
+  font-size:15px;
+  font-weight:700;
+  color:rgba(255,255,255,.82);
+  letter-spacing:.5px;
   display:block;
 }
 .t-item.sel .t-num{color:#d4af37}
-.t-price{font-size:9px;color:rgba(255,255,255,.3);margin-top:2px}
+.t-price{
+  font-size:10px;
+  color:rgba(255,255,255,.3);
+  margin-top:6px;
+}
 .t-item.sel .t-price{color:rgba(212,175,55,.5)}
 
 /* ─── SELECTED PANEL ─── */
@@ -523,10 +548,19 @@ body{
 .footer{text-align:center;font-size:10px;color:rgba(255,255,255,.15);padding:16px 0 4px;line-height:1.8}
 
 @media(max-width:360px){
-  .ticket-grid{grid-template-columns:repeat(3, minmax(0, 1fr))}
-  .prize-rupee{font-size:44px}
-  .cd-num{font-size:34px}
-}
+@media(max-width:360px){
+  .ticket-grid{
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    height:510px;
+  }
+  .t-item{
+    height:150px;
+    padding:10px 6px;
+  }
+  .t-ticket-icon{font-size:24px;margin-bottom:8px}
+  .t-num{font-size:13px}
+  .t-price{font-size:9px}
   .prize-rupee{font-size:44px}
   .cd-num{font-size:34px}
 }
