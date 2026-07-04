@@ -638,7 +638,7 @@ body{
   </div>
 
   <!-- WA STRIP -->
-  <div class="wa-strip" onclick="openPopup()">
+  <div class="wa-strip" id="waStripBtn" onclick="openPopup()">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.532 5.862L0 24l6.302-1.508A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 01-5.044-1.394l-.361-.214-3.741.894.948-3.647-.237-.376A9.793 9.793 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
     ವಾಟ್ಸಾಪ್ ನಲ್ಲಿ ಬುಕ್ ಮಾಡಿ
   </div>
@@ -723,7 +723,7 @@ body{
 <!-- FLOATING WA -->
 <div class="wa-float">
   <div class="wa-tip">Book Now!</div>
-  <a href="https://wa.me/919296845372" target="_blank" class="wa-btn-circle">
+  <a id="waFloatBtn" href="#" target="_blank" class="wa-btn-circle">
     <div class="ring ring1"></div>
     <div class="ring ring2"></div>
     <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.532 5.862L0 24l6.302-1.508A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 01-5.044-1.394l-.361-.214-3.741.894.948-3.647-.237-.376A9.793 9.793 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
@@ -739,7 +739,7 @@ body{
     <p class="popup-sub">Aapke selected lucky tickets ready hain.<br>WhatsApp par confirm karein!</p>
     <div class="popup-tickets-box" id="popupTickets"></div>
     <div class="popup-total" id="popupTotal">Total: ₹0</div>
-    <a class="popup-wa-btn" id="popupWaLink" href="#" target="_blank">
+    <a class="popup-wa-btn" id="popupWaBtn" href="#" target="_blank">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.122 1.532 5.862L0 24l6.302-1.508A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.805 9.805 0 01-5.044-1.394l-.361-.214-3.741.894.948-3.647-.237-.376A9.793 9.793 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
       Confirm on WhatsApp
     </a>
@@ -906,7 +906,7 @@ function openPopup(){
   console.log("WA Link:", waLink);
 
   document.getElementById('popupWaBtn').href = waLink;
-  document.getElementById('popupWaBtn').target = "_blank";
+document.getElementById('popupWaBtn').target = "_blank";
 
   document.getElementById('overlay').classList.add('on');
   document.body.style.overflow = 'hidden';
@@ -919,6 +919,7 @@ function closeOutside(e){if(e.target===document.getElementById('overlay'))closeP
 
 render(); update();
 </script>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -937,27 +938,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Firebase se WhatsApp number live load hoga
 onValue(ref(db, "site/whatsapp"), (snapshot) => {
   window.WA = snapshot.exists() ? String(snapshot.val()).trim() : "";
   console.log("Loaded WhatsApp Number from Firebase:", window.WA);
 
-  // Agar page me koi direct WA buttons/links hon to unhe bhi update kar do
   const defaultMsg = encodeURIComponent("Hello, I want to book Kerala Lottery tickets.");
   const directLink = window.WA ? `https://wa.me/${window.WA}?text=${defaultMsg}` : "#";
 
-  // Agar floating button hai aur usko id di hai
+  // Floating WhatsApp button update
   const waFloatBtn = document.getElementById("waFloatBtn");
   if (waFloatBtn) {
     waFloatBtn.href = directLink;
     waFloatBtn.target = "_blank";
-  }
-
-  // Agar top strip / whatsapp strip ko id di hai
-  const waStripBtn = document.getElementById("waStripBtn");
-  if (waStripBtn) {
-    waStripBtn.href = directLink;
-    waStripBtn.target = "_blank";
   }
 }, (error) => {
   console.error("Firebase read error:", error);
