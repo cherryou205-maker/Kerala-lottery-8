@@ -255,64 +255,28 @@
       measurementId: "G-T2YPCYKSZX"
     };
 
+    const ADMIN_PASSWORD = "12345";
+
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    const ADMIN_PASSWORD = "12345";
+    const loginBox = document.getElementById("loginBox");
+    const adminBox = document.getElementById("adminBox");
+    const adminPassword = document.getElementById("adminPassword");
+    const currentNumber = document.getElementById("currentNumber");
+    const newNumber = document.getElementById("newNumber");
+    const loginError = document.getElementById("loginError");
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
 
-    window.loginAdmin = async function () {
-      const pass = document.getElementById("adminPassword").value.trim();
-      const loginError = document.getElementById("loginError");
-
+    function hideMessages() {
       loginError.style.display = "none";
-
-      if (pass !== ADMIN_PASSWORD) {
-        loginError.style.display = "block";
-        return;
-      }
-
-      document.getElementById("loginBox").style.display = "none";
-      document.getElementById("adminBox").style.display = "block";
-
-      try {
-        const snap = await get(ref(db, "site/whatsapp"));
-        document.getElementById("currentNumber").value = snap.exists() ? snap.val() : "";
-      } catch (err) {
-        console.error("Read error:", err);
-      }
-    };
-
-    window.logoutAdmin = function () {
-      document.getElementById("adminBox").style.display = "none";
-      document.getElementById("loginBox").style.display = "block";
-      document.getElementById("adminPassword").value = "";
-    };
-
-    window.saveWhatsAppNumber = async function () {
-      const newNumber = document.getElementById("newNumber").value.trim();
-      const successMsg = document.getElementById("successMsg");
-      const errorMsg = document.getElementById("errorMsg");
-
       successMsg.style.display = "none";
       errorMsg.style.display = "none";
+    }
 
-      if (!newNumber) {
-        errorMsg.textContent = "Please enter WhatsApp number.";
-        errorMsg.style.display = "block";
-        return;
-      }
-
+    async function loadCurrentNumber() {
       try {
-        await set(ref(db, "site/whatsapp"), newNumber);
-        document.getElementById("currentNumber").value = newNumber;
-        document.getElementById("newNumber").value = "";
-        successMsg.style.display = "block";
-      } catch (err) {
-        console.error("Save error:", err);
-        errorMsg.textContent = "Failed to update number.";
-        errorMsg.style.display = "block";
-      }
-    };
-  </script>
-</body>
-</html>
+        const snap = await get(ref(db, "site/whatsapp"));
+        currentNumber.value = snap.exists() ? snap.val() : "";
+      } catch (
