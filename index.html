@@ -861,12 +861,12 @@ function openPopup(){
     `Total: ₹${(sel.length * PRICE).toLocaleString('en-IN')}`;
 
   const msg =
-    `🎟️ *Kerala Royal Lottery Booking 2026*\n\n` +
-    `Selected Tickets (${sel.length}):\n${sel.join(', ')}\n\n` +
-    `💰 Total Amount: ₹${sel.length * PRICE}\n\n` +
-    `Please confirm my booking! 🙏`;
+  `🎟️ *Kerala Royal Lottery Booking 2026*\n\n` +
+  `Selected Tickets (${sel.length}):\n${sel.join(', ')}\n\n` +
+  `💰 Total Amount: ₹${sel.length * PRICE}\n\n` +
+  `Please confirm my booking! 🙏`;
 
-  const waLink = `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
+const waLink = `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
 
   console.log("Loaded WA:", window.WA);
   console.log("WA Link:", waLink);
