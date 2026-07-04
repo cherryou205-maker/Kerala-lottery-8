@@ -271,10 +271,13 @@ body{
 
 /* ─── TICKET GRID ─── */
 .ticket-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
   gap:7px;
-  max-height:500px;overflow-y:auto;
-  padding-right:2px;margin-bottom:16px;
+  max-height:none;
+  overflow-y:visible;
+  padding-right:0;
+  margin-bottom:16px;
 }
 .ticket-grid::-webkit-scrollbar{width:3px}
 .ticket-grid::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:2px}
