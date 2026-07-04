@@ -844,18 +844,38 @@ document.getElementById('searchInput').addEventListener('input',function(){
 
 // ─── POPUP ───
 function openPopup(){
-  if(selected.size<MIN) return;
-  const sel=[...selected];
-  document.getElementById('popupTickets').innerHTML=sel.join('<br>');
-  document.getElementById('popupTotal').textContent=`Total: ₹${(sel.length*PRICE).toLocaleString('en-IN')}`;
-  const msg=encodeURIComponent(
-    `🎟️ *Kerala Royal Lottery Booking 2026*\n\n`+
-    `Selected Tickets (${sel.length}):\n${sel.join(', ')}\n\n`+
-    `💰 Total Amount: ₹${sel.length*PRICE}\n\nPlease confirm my booking! 🙏`
-  );
-  document.getElementById('popupWaBtn').href = `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
+  if(selected.size < MIN){
+    alert(`Please select minimum ${MIN} tickets`);
+    return;
+  }
+
+  if(!window.WA || window.WA.trim() === ""){
+    alert("WhatsApp number not loaded yet. Please try again in 2 seconds.");
+    return;
+  }
+
+  const sel = [...selected];
+
+  document.getElementById('popupTickets').innerHTML = sel.join('<br>');
+  document.getElementById('popupTotal').textContent =
+    `Total: ₹${(sel.length * PRICE).toLocaleString('en-IN')}`;
+
+  const msg =
+    `🎟️ *Kerala Royal Lottery Booking 2026*\n\n` +
+    `Selected Tickets (${sel.length}):\n${sel.join(', ')}\n\n` +
+    `💰 Total Amount: ₹${sel.length * PRICE}\n\n` +
+    `Please confirm my booking! 🙏`;
+
+  const waLink = `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
+
+  console.log("Loaded WA:", window.WA);
+  console.log("WA Link:", waLink);
+
+  document.getElementById('popupWaBtn').href = waLink;
+  document.getElementById('popupWaBtn').target = "_blank";
+
   document.getElementById('overlay').classList.add('on');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
 }
 function closePopup(){
   document.getElementById('overlay').classList.remove('on');
