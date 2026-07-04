@@ -272,17 +272,15 @@ body{
 /* ─── TICKET GRID ─── */
 .ticket-grid{
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
-  gap:7px;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:12px;
+  width:100%;
   max-height:none;
-  overflow-y:visible;
+  overflow:visible;
   padding-right:0;
   margin-bottom:16px;
 }
-.ticket-grid::-webkit-scrollbar{width:3px}
-.ticket-grid::-webkit-scrollbar-track{background:rgba(255,255,255,.04);border-radius:2px}
-.ticket-grid::-webkit-scrollbar-thumb{background:rgba(212,175,55,.4);border-radius:2px}
-
+.ticket-grid::-webkit-scrollbar{display:none}
 .t-item{
   background:rgba(255,255,255,.04);
   border:1px solid rgba(212,175,55,.15);
@@ -525,10 +523,10 @@ body{
 .footer{text-align:center;font-size:10px;color:rgba(255,255,255,.15);padding:16px 0 4px;line-height:1.8}
 
 @media(max-width:360px){
-  .ticket-grid{
-    grid-template-columns:repeat(3,1fr) !important;
-    gap:7px;
-  }
+  .ticket-grid{grid-template-columns:repeat(3, minmax(0, 1fr))}
+  .prize-rupee{font-size:44px}
+  .cd-num{font-size:34px}
+}
   .prize-rupee{font-size:44px}
   .cd-num{font-size:34px}
 }
