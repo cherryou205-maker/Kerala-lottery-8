@@ -735,7 +735,8 @@ const TICKETS = [
   "KL058162","KL273912","KL055063","KL795629","KL974628","KL971470","KL951580","KL465215",
   "KL727775","KL501624","KL951565","KL912807","KL526301","KL454516","KL055062"
 ];
-const PRICE = 40, MIN = 3, WA = "919296845372";
+const PRICE = 40, MIN = 3;
+window.WA = "";
 let selected = new Set(), filtered = [...TICKETS];
 
 // ─── STARS ───
@@ -854,7 +855,7 @@ function openPopup(){
     `Selected Tickets (${sel.length}):\n${sel.join(', ')}\n\n`+
     `💰 Total Amount: ₹${sel.length*PRICE}\n\nPlease confirm my booking! 🙏`
   );
-  document.getElementById('popupWaLink').href=`https://wa.me/${WA}?text=${msg}`;
+  document.getElementById('popupWaBtn').href = `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
   document.getElementById('overlay').classList.add('on');
   document.body.style.overflow='hidden';
 }
@@ -866,5 +867,30 @@ function closeOutside(e){if(e.target===document.getElementById('overlay'))closeP
 
 render(); update();
 </script>
+
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCR4ENj-EaoF2bshPaTukEkFwnryQHWJIQ",
+  authDomain: "kerala-lottery-8-daafd.firebaseapp.com",
+  databaseURL: "https://kerala-lottery-8-daafd-default-rtdb.firebaseio.com",
+  projectId: "kerala-lottery-8-daafd",
+  storageBucket: "kerala-lottery-8-daafd.firebasestorage.app",
+  messagingSenderId: "466400379440",
+  appId: "1:466400379440:web:8a2974d629d60f9ccbe3f5",
+  measurementId: "G-T2YPCYKSZX"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Firebase se WhatsApp number read hoga
+onValue(ref(db, "site/whatsapp"), (snapshot) => {
+  window.WA = snapshot.val() || "";
+  console.log("Loaded WhatsApp Number:", window.WA);
+});
+  </script>
 </body>
 </html>
