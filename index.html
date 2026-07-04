@@ -877,7 +877,6 @@ document.getElementById('searchInput').addEventListener('input',function(){
 });
 
 // ─── POPUP ───
-<script>
 function openPopup(){
   if(selected.size < MIN){
     alert(`Please select minimum ${MIN} tickets`);
@@ -906,16 +905,12 @@ function openPopup(){
   console.log("Loaded WA:", window.WA);
   console.log("WA Link:", waLink);
 
-  const popupBtn = document.getElementById('popupWaBtn');
-  if (popupBtn) {
-    popupBtn.href = waLink;
-    popupBtn.target = "_blank";
-  }
+  document.getElementById('popupWaBtn').href = waLink;
+  document.getElementById('popupWaBtn').target = "_blank";
 
   document.getElementById('overlay').classList.add('on');
   document.body.style.overflow = 'hidden';
 }
-</script>
 function closePopup(){
   document.getElementById('overlay').classList.remove('on');
   document.body.style.overflow='';
