@@ -877,39 +877,45 @@ document.getElementById('searchInput').addEventListener('input',function(){
 });
 
 // ─── POPUP ───
-function openPopup(){
-  if(selected.size < MIN){
+function openPopup() {
+  if (selected.size < MIN) {
     alert(`Please select minimum ${MIN} tickets`);
     return;
   }
 
-  if(!window.WA || window.WA.trim() === ""){
+  if (!window.WA || window.WA.trim() === "") {
     alert("WhatsApp number not loaded yet. Please try again in 2 seconds.");
     return;
   }
 
   const sel = [...selected];
 
-  document.getElementById('popupTickets').innerHTML = sel.join('<br>');
-  document.getElementById('popupTotal').textContent =
-    `Total: ₹${(sel.length * PRICE).toLocaleString('en-IN')}`;
+  // Popup me selected tickets dikhane ke liye
+  document.getElementById("popupTickets").innerHTML = sel.join("<br>");
+  document.getElementById("popupTotal").textContent =
+    `Total: ₹${(sel.length * PRICE).toLocaleString("en-IN")}`;
 
+  // WhatsApp message
   const msg =
     `🎟️ *Kerala Royal Lottery Booking 2026*\n\n` +
-    `Selected Tickets (${sel.length}):\n${sel.join(', ')}\n\n` +
-    `💰 Total Amount: ₹${sel.length * PRICE}\n\n` +
+    `Selected Tickets (${sel.length}):\n` +
+    `${sel.join(", ")}\n\n` +
+    `💰 Total Amount: ₹${(sel.length * PRICE).toLocaleString("en-IN")}\n\n` +
     `Please confirm my booking! 🙏`;
 
   const waLink = `https://wa.me/${window.WA}?text=${encodeURIComponent(msg)}`;
 
-  console.log("Loaded WA:", window.WA);
-  console.log("WA Link:", waLink);
+  console.log("Selected tickets:", sel);
+  console.log("WA number:", window.WA);
+  console.log("WA link:", waLink);
 
-  document.getElementById('popupWaBtn').href = waLink;
-document.getElementById('popupWaBtn').target = "_blank";
+  // IMPORTANT: yahi ID honi chahiye HTML me bhi
+  const popupBtn = document.getElementById("popupWaBtn");
+  popupBtn.href = waLink;
+  popupBtn.target = "_blank";
 
-  document.getElementById('overlay').classList.add('on');
-  document.body.style.overflow = 'hidden';
+  document.getElementById("overlay").classList.add("on");
+  document.body.style.overflow = "hidden";
 }
 function closePopup(){
   document.getElementById('overlay').classList.remove('on');
